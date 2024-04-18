@@ -1,0 +1,45 @@
+.settings-div {
+    width: 20rem;
+    display: flex;
+    /*border: 1px solid #000000;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.settings-div p{
+    -ms-flex: 1; 
+    flex: 1;
+    text-align:center;
+    border-radius: 5px;
+}
+.settings-div label{
+    -ms-flex: 1; 
+    flex: 1;
+    text-align:center;
+}
+.settings-list-div {
+    max-height: 60rem;
+}
+
+.settings-div p.left-toggle {
+    background-color: gray;
+  }
+  
+  .settings-div p.right-toggle {
+    background-color: white;
+  }
+input[type="checkbox"]:checked ~  p.left-toggle {
+    background-color: white;
+}
+
+p.right-toggle ~ .toggle-div > input[type="checkbox"]:checked {
+    background-color: burlywood;
+}
+input[type="checkbox"]:not(:checked) ~ p.left-toggle {
+    background-color: purple;
+}
+
+input[type="checkbox"]:not(:checked) ~ p.right-toggle {
+    background-color: red;
+}

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import YouTube from 'react-youtube';
+import "../index.css";
 const VidPlaylist = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const videoIds = ['_3ngiSxVCBs', '0FCvzsVlXpQ', 'ddw_LOCXJmo']; // Array of YouTube video IDs
+  const videoIds = ['_3ngiSxVCBs', '0FCvzsVlXpQ', 'ddw_LOCXJmo', 'In_06EmHhuk', 'l9raQQ-ehH8']; // Array of YouTube video IDs
 
   const handleVideoEnd = () => {
     //CURRENTLY:
@@ -21,16 +22,18 @@ const VidPlaylist = () => {
   
 
   return (
-    <div>
-        <button onClick={handleVideoEnd}>⏭</button>
+    <div className='video-player'>
       <YouTube
         videoId={videoIds[currentVideoIndex]}
         onEnd={handleVideoEnd}
-        opts={{ width: '640', height: '360',
+        style={{borderRadius:75, overflow: 'hidden',zIndex:1}}
+        opts={{ width: '192', height: '108',
         playerVars: {
             autoplay: 1,
           }, }}
       />
+    <button onClick={handleVideoEnd}>⏭</button>
+
     </div>
   );
 };

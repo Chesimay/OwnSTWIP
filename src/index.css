@@ -46,3 +46,7 @@ code {
   display: flex;
   align-items: center;
 }
+.video-player{
+  display: flex;
+  align-items: center;
+}

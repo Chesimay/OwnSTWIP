@@ -1,20 +1,11 @@
 import { Outlet, Link } from "react-router-dom";
 import VidPlaylist from "../Components/VidPlaylist";
-
+import "../index.css";
 const Menu = () => {
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/settings">Settings</Link>
-          </li>
+      <nav className="left-justified">
           <VidPlaylist />
-
-        </ul>
       </nav>
 
       <Outlet />

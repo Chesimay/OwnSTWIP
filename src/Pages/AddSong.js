@@ -7,7 +7,8 @@ function AddSong() {
   return (
     <div className="page">
         <div className='left-justified'>
-            <p>Good afternoon! It's</p>
+            <p>Add Song</p>
+            <p>Add Playlist</p>
         </div>
         <div className='centered'>
             <p>Thursday, April 18th</p>

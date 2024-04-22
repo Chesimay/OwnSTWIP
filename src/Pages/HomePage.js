@@ -2,20 +2,23 @@
 import '../index.css';
 import IconButton from "../Components/IconButton.js";
 import IconDisplay from "../Components/IconDisplay.js";
-import VidPlaylist from '../Components/VidPlaylist.js';
+import Carousel from '../Components/Carousel.js';
+import useDate from "../TimeGetter.js";
 
 function HomePage({background}) {
     //if background photo is in this enum
     let palette = "dark";
     //if it is in this other enum, let palette = "light";
+    let timeyText = useDate(/* setting for military time */);
+
   return (
     <div className="page">
         <div className='left-justified'>
-            <p>Good afternoon! It's</p>
+            <p>{timeyText[0]}</p>
         </div>
         <div className='centered'>
-            <p>Thursday, April 18th</p>
-            <h1>2:21 PM</h1>
+            <p>{timeyText[1]}</p>
+            <h1>{timeyText[2]}</h1>
             <div className='evenly-spaced'>
                 <IconDisplay 
                 icon={'35'}
@@ -23,13 +26,20 @@ function HomePage({background}) {
                 palette={palette}
                 />
                 <IconDisplay 
-                icon={'rain'}
+                icon={'3ain'}
                 text={'Raining'}
                 palette={palette}
                 />
             </div>
         </div>
-        <div className='right-justified'></div>
+        <div className='left-aligned'>
+
+        <p>Select your current activity:</p>
+        </div>
+        <div className='centered'>
+       
+            <Carousel items={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]} />
+        </div>
         <div className='centered'>
             <div className='evenly-spaced'>
                     <IconButton 

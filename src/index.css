@@ -20,13 +20,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: auto;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+button{
+  cursor: pointer;
+}
 .page{width: 100%;}
 .centered{
   width: 100%;
@@ -39,14 +42,32 @@ code {
 }
 .right-justified{
   width:100%;
+  display: flex;
+  justify-content: flex-end;
 }
 .evenly-spaced{
-  background-color: #156082;
   width: 90%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.video-player{
+.flex-center{
   display: flex;
   align-items: center;
 }
+.top-menu{
+  backdrop-filter: blur(5px);
+  position: sticky;
+  top: 0; /* Specify the threshold position */
+  z-index: 100;
+  
+  width:100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.small-button{
+  height:5vw;
+  width:10vw;
+}
+.small-button p{  font-size: medium;}

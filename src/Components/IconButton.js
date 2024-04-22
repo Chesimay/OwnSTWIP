@@ -3,14 +3,21 @@ import '../CSS/Icon.css';
 import IconImg from './IconImg.js';
 
 function IconButton({icon, text, palette, linkTo}) {
-        
-  return (
-    <div>
-      <Link to={linkTo}>
-            <div className="Icon-background">
+  var id = icon+"-"+text;
+  var i = 1;
+  while(document.getElementById(id) != null){
+      id = icon+"-"+text+"-"+i;
+      i++;
+  }
 
-        <IconImg icon={icon} palette={palette} />
-        <p>{text}</p>
+  return (
+    <div className='Icon-background' id={id}>
+      <Link to={linkTo}>
+        <div className="Icon-button">
+
+          <IconImg icon={icon} palette={palette} />
+          <p>{text}</p>
+          
         </div>
       </Link>
     </div>

@@ -22,7 +22,7 @@ const VidPlaylist = () => {
   
 
   return (
-    <div className='video-player'>
+    <div className='flex-center'>
       <YouTube
         videoId={videoIds[currentVideoIndex]}
         onEnd={handleVideoEnd}
@@ -33,6 +33,8 @@ const VidPlaylist = () => {
           }, }}
       />
     <button onClick={handleVideoEnd}>⏭</button>
+    <button>✎</button>
+
 
     </div>
   );

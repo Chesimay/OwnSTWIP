@@ -7,6 +7,7 @@ function Settings() {
   const [unit, setUnit] = useState('Celsius');
   const [clockFormat, setClockFormat] = useState('12-hour');
   const [zipCode, setZipCode] = useState('');
+  const [activities, setActivities] = useState(["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]);
 
   const handleUnitToggle = () => {
     setUnit(unit === 'Celsius' ? 'Fahrenheit' : 'Celsius');
@@ -22,7 +23,17 @@ function Settings() {
 
   return (
     <div className='left-justified'>
-        <h2>Settings</h2>
+        <div className='flex-center'>        
+            <h2 className='left-justified'>Settings</h2>
+            <div className="right-justified small-button">
+                <IconButton 
+                icon={'back'}
+                text={'Return Home'}
+                palette={"light"}
+                linkTo={"/"}
+                />
+            </div>
+        </div>
         <div className='settings-list-div'>
             <div className='settings-div'>
 
@@ -77,13 +88,20 @@ function Settings() {
                 />)}
                 </label>
             </div>
+            <div >
+                <h3>Edit Activities</h3>
+                <p>Hint: Press Windows+"." or CTRL+CMD+space bar on Mac to open the emoji keyboard.</p>
+                {activities.map((activity, index) => (
+                    <div className='settings-list-div'>
+                        <p>{index}</p>
+                        <input type="text" defaultValue={activity}></input>
+                        <IconButton icon="X" text="Remove" />
+                    </div>
+                    ))}
+                    <IconButton icon="plus" text="Add Activity"/>    
+            </div>
         </div>
-        <IconButton 
-            icon={'back'}
-            text={'Return Home'}
-            palette={"light"}
-            linkTo={"/"}
-            />
+        
     </div>
   );
 }

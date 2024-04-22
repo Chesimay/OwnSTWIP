@@ -1,21 +1,31 @@
-.Icon-background{
+.Icon-button{
     background-color: rgba(28, 28, 28, 60);
     border-radius: 10px;
     color: #FFFFFF ;
     font-family: 'Work Sans', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size:35px;
+    font-size:x-large;
     
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
-.Icon-background p {
-    padding-left: 10px;
+.Icon-button p {
+    padding-left: 2%;
+    padding-right: 2%;
+    overflow: hidden;
+}
+
+.Icon-background{
+    width: 100%;
+    margin:2%;
+    overflow: hidden;
 }
 
 .Icon-display-area {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
+    width: 30%;
+    max-width: 75px;
+    aspect-ratio: 1/1;
+    margin: 2%;
 
     overflow: hidden;
     display: flex;

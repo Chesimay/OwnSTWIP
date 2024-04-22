@@ -31,7 +31,7 @@ const Carousel = ({ items }) => {
           key={index}
           className="carousel-item"
           style={{
-            borderBottom: selectedIndex === index ? '2px solid blue' : '2px solid transparent',
+            backgroundColor: selectedIndex === index ? 'rgba(91, 91, 91, 60)' : 'rgba(57, 57, 57, 60)',
           }}
           onClick={() => handleItemClick(index)}
         >
@@ -41,25 +41,5 @@ const Carousel = ({ items }) => {
     </div>
   );
 };
-//   return (
-//     <div className="carousel-container">
-//       <div
-//         className="carousel"
-//         style={{ transform: `translateX(-${scrollLeft}px)` }}
-//         ref={carouselRef}
-//       >
-//         {items.map((item, index) => (
-//           <div
-//             key={index}
-//             className="carousel-item"
-//             onClick={() => handleItemClick(index)}
-//           >
-//             {item}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
 
 export default Carousel;

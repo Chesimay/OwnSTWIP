@@ -4,23 +4,26 @@
     position: relative;
     white-space: no-wrap;
     overflow-x: auto;
-
-  }
-  
-  .carousel {
     display: flex;
     transition: transform 0.5s ease;
+    align-items: stretch;
   }
   
   .carousel-item {
-    flex: 0 0 auto;
+    flex: 1 0 auto;
     white-space: nowrap;
-    margin-right: 10px; /* Adjust as needed */
+    margin-right: auto; /* Adjust as needed */
     padding: 10px; /* Adjust as needed */
     cursor: pointer;
     display: inline-block;
     min-width: 100px;
     padding: 5px;
     cursor: pointer;
+    text-align: center;
+
+    /*background-color: rgba(28, 28, 28, 60);*/
+    border-radius: 10px;
+    color: #FFFFFF ;
+    font-family: 'Work Sans', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
   

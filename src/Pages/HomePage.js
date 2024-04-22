@@ -37,7 +37,12 @@ function HomePage({background}) {
         <p>Select your current activity:</p>
         </div>
         <div className='centered'>
-       
+                 {/* In theory, these entries should be grabbed from the current account's settings db entry
+           <Dropdown 
+          title={"Current activity:"}
+          uniqueID={"activity_selector"}
+          entries={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]}/>
+           */}
             <Carousel items={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]} />
         </div>
         <div className='centered'>
@@ -46,6 +51,7 @@ function HomePage({background}) {
                     icon={'plus'}
                     text={'Add Song'}
                     palette={"dark"}
+                    linkTo={"/add-song"}
                     />
                     <IconButton 
                     icon={'gear'}

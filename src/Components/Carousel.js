@@ -31,7 +31,7 @@ const Carousel = ({ items }) => {
           key={index}
           className="carousel-item"
           style={{
-            backgroundColor: selectedIndex === index ? 'rgba(91, 91, 91, 60)' : 'rgba(57, 57, 57, 60)',
+            backgroundColor: selectedIndex === index ? 'rgba(91, 91, 91, 0.8)' : 'rgba(57, 57, 57, 0.8)',
           }}
           onClick={() => handleItemClick(index)}
         >

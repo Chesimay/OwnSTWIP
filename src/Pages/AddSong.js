@@ -1,6 +1,6 @@
 import '../index.css';
 import IconButton from "../Components/IconButton.js";
-import IconDisplay from "../Components/IconDisplay.js";
+import ConditionSet from "../Components/ConditionSet.js";
 import YouTube from 'react-youtube';
 import React, {useState, useEffect} from 'react';
 
@@ -109,6 +109,7 @@ function AddSong() {
                 </div>
 
                 <p>This song can play if <span style={{ fontWeight: "bold" }}>any</span> of the following condition sets are true:</p>
+                <ConditionSet />
                 <div className='evenly-spaced'>
                     <IconButton
                         icon={'X'}

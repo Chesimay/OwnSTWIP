@@ -101,6 +101,8 @@ button{
   transition: all 0.3s ease; /* Add transition for smooth animation */
   pointer-events: none; /* Ensure placeholder does not interfere with typing */
   color: var(--mid-gray);
+  max-height: 1.7em;
+  overflow: hidden;
 }
 
 /* Style for the placeholder when in focus or has value */

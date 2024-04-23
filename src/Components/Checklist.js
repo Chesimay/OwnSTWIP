@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../CSS/Checklist.css";
 
 const Checklist = ({ title, items }) => {
   const [checkedItems, setCheckedItems] = useState({});
@@ -34,9 +35,10 @@ const Checklist = ({ title, items }) => {
             {Array.isArray(item) ? (
               renderChecklist(item, depth + 1)
             ) : (
-              <label>
+              <label className='checkbox-and-label'>
                 <input 
                   type="checkbox" 
+                  className='checkbox'
                   checked={checkedItems[item] || false}
                   onChange={(e) => handleCheckboxChange(item, e.target.checked)}
                 />
@@ -49,17 +51,11 @@ const Checklist = ({ title, items }) => {
     );
   };
 
-  const getCheckedItems = () => {
-    return Object.keys(checkedItems).filter(item => checkedItems[item]);
-  };
 
   return (
     <div>
       <h2>{title}</h2>
       {renderChecklist(items)}
-      <button onClick={() => alert(`Checked items: ${getCheckedItems().join(', ')}`)}>
-        Get Checked Items
-      </button>
     </div>
   );
 };

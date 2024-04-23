@@ -1,0 +1,67 @@
+/* Checklist.css */
+:root{
+    --white: #FFFFFF;
+    --light-gray: #D9D9D9;
+    --mid-gray: #919191;
+    --dark-gray: #575757;
+    --black: #000000;
+  
+    --light-blue: #C1E5F5;
+    --light-blue-shading: #AEDDF3;
+    --mid-blue: #83CBEB;
+    --blue: #156082;
+    --blue-shading: #0A5272;
+    --dark-blue: #042433;
+  }
+
+.checklist {
+    list-style: none;
+  }
+  
+  .checkbox-and-label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox {
+    /* Hide the default checkbox */
+    appearance: none;
+    /* Create a custom checkbox */
+    width: 40px;
+    height: 40px;
+/*    margin-right: 10px;*/
+    border: 2px solid var(--dark-blue);
+    background-image: linear-gradient(to bottom right, var(--light-blue),  var(--light-blue-shading));
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .checkbox:checked::before {
+    /* Display a checkmark when the checkbox is checked */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 37px;
+    height: 37px;
+    background-color: var(--blue);
+    background-image: linear-gradient(to top left, var(--blue),  var(--blue-shading));
+    border-radius: 2px;
+
+    /* Text properties */
+    color: var(--light-blue);
+    font-size: 35px;
+    content: "✔";
+  }
+  
+  .checkbox::before {
+    /* Empty by default */
+    content: '';
+    display: block;
+  }
+  
+  .checkbox:checked {
+    /* Change the color when checked */
+    border-color: var(--dark-blue);
+  }
+  

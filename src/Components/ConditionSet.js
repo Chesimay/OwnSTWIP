@@ -20,7 +20,17 @@ function ConditionSet({title, uniqueID, entries}) {
     <Checklist 
     title={"Solar Day"}
     items={["🏙️ Daylight", "🌃 Night", "🌇 Twilight", ["Sunrise Twilight", "Sunset Twilight"]]} />
+    
+    <Checklist 
+    title={"Meteorological Season"}
+    items={["🌱 Spring", "🏖️ Summer", "🍁 Autumn", "⛄ Winter"]} />
 
+    <Checklist 
+    title={"Month"}
+    items={["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December"]} 
+    columns={2}/>
+    <h2>Temperature Range</h2>
+    
     </div>
   );
 }

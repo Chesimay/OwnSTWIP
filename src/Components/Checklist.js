@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import "../CSS/Checklist.css";
+import "../index.css";
 
-const Checklist = ({ title, items }) => {
+const Checklist = ({ title, items, columns = 1 }) => {
   const [checkedItems, setCheckedItems] = useState({});
 
   const handleCheckboxChange = (item, isChecked) => {
@@ -51,6 +52,21 @@ const Checklist = ({ title, items }) => {
     );
   };
 
+  if(columns >= 2){
+    const halfIndex = Math.ceil(items.length / 2);
+    const itemsFirstHalf = items.slice(0, halfIndex); 
+    const itemsSecondHalf = items.slice(halfIndex, items.length);
+    
+    return (
+        <div>
+          <h2>{title}</h2>
+          <div className='evenly-spaced'>
+          {renderChecklist(itemsFirstHalf)}
+          {renderChecklist(itemsSecondHalf)}
+          </div>
+        </div>
+      );
+  }
 
   return (
     <div>

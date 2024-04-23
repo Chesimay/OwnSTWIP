@@ -8,6 +8,8 @@ function IconButton({icon, palette, hover}) {
     //note to self: I should really make an enum of all the available icons
     // it should include "plus", "gear", "back", "X", "check", "rain", and "square", at least
 
+    icon=icon.toLowerCase();
+
     let lightFill = "#c9c9c9";
     let fillStr = "#919191";
     let darkFill = "#575757";
@@ -27,6 +29,23 @@ function IconButton({icon, palette, hover}) {
         );
     
     }
+
+    if (icon.includes("check")){
+
+      return (
+        <div className="Icon-display-area">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+              <title>check mark</title>
+              {/* longer rectangle */}
+              <rect x="15" y="52" width="90" height="16" transform="rotate(-45 50 50)" style={{fill: fillStr}}/>
+              {/* shorter rectangle */}
+              <rect x="15" y="27" width="16" height="30" transform="rotate(-45 50 50)" style={{fill: fillStr}}/>
+          </svg>
+        </div>
+        );
+    
+    }
+
     if (icon.includes("gear")){
       return (
         <div className="Icon-display-area">
@@ -73,7 +92,7 @@ function IconButton({icon, palette, hover}) {
     }
 
     
-    if (icon.includes("X")){
+    if (icon.includes("x")){
       return (
         <div className="Icon-display-area">
 

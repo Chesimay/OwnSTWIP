@@ -76,3 +76,45 @@ button{
   width:10vw;
 }
 .small-button p{  font-size: medium;}
+
+
+
+.input-container {
+  position: relative;
+  width: 80%; /* Adjust the width as needed */
+}
+
+/* Style for the text input */
+.text-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--mid-gray);
+  border-radius: 20px;
+  position: relative;
+}
+
+/* Style for the placeholder */
+.text-input-placeholder {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  left: 10px; /* Adjust the left position as needed */
+  transition: all 0.3s ease; /* Add transition for smooth animation */
+  pointer-events: none; /* Ensure placeholder does not interfere with typing */
+  color: var(--mid-gray);
+}
+
+/* Style for the placeholder when in focus or has value */
+.text-input:focus + .text-input-placeholder,
+.text-input:not(:placeholder-shown) + .text-input-placeholder {
+  top: -15px; /* Adjust the top position when input is focused or has value */
+  left: 10px; /* Adjust the left position as needed */
+  font-size: 12px; /* Adjust the font size as needed */
+  color: var(--white); /* Adjust the color as needed */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* an outline*/
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--blue); 
+  box-shadow: 0 0 5px --mid-gray;
+}

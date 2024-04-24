@@ -120,3 +120,11 @@ button{
   border-color: var(--blue); 
   box-shadow: 0 0 5px --mid-gray;
 }
+
+.youtube-container {
+  width: 100%; /* Adjust this as needed */
+  height: auto; /* Adjust this as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

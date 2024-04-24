@@ -4,7 +4,6 @@ import ConditionSet from "../Components/ConditionSet.js";
 import YouTube from 'react-youtube';
 import React, {useState, useEffect} from 'react';
 
-
 function AddSong() {
     let palette = "light";
 
@@ -71,24 +70,44 @@ function AddSong() {
         determineVideoId();
     }, [url]);
 
-    window.addEventListener('load',function(){
-        initializeV();
-        function initializeV(){
-                //1% of the parent viewport width (same as 1vw):
-                var vw = window.parent.innerWidth/100;
-                var width = 60*vw;
-                var height = width* 9.0 / 16.0;
-    
-                //assign width and height to the video frame
-                document.getElementById('preview').style.width = width+'px';
-                document.getElementById('preview').style.height = height+'px';
-        }
-    
-        window.parent.addEventListener('resize',function(){
-              //when the browser window is resized; recalculate
-              initializeV();
-        });
-    });
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+
+    useEffect(() => {
+      function handleWindowResize() {
+        setWindowSize(getWindowSize());
+      }
+  
+      window.addEventListener('resize', handleWindowResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleWindowResize);
+      };
+    }, []);
+        
+    function getWindowSize() {
+        const {innerWidth, innerHeight} = window;
+        console.log("new size");
+
+            //1% of the parent viewport width (same as 1vw):
+            var vw = innerWidth/100;
+            var width = 60*vw;
+            var height = width* 9.0 / 16.0;
+            console.log(width+", "+height);
+
+            //assign width and height to the video frame
+            const elm = document.getElementById('preview');
+            if (elm != null) {
+                elm.style.width = width + 'px';
+                elm.style.height = height + 'px';
+                console.log("finished changing");
+            }
+            else{
+                //console.log("could not find an element with the id 'preview'");
+            }
+
+        return {innerWidth, innerHeight};
+    }
+  
 
     return (
         <div className="page">
@@ -97,15 +116,18 @@ function AddSong() {
                 <p>Add Playlist</p>
             </div>
             <div className='centered'>
-                <YouTube
-                    id={"preview"}
-                    videoId={vidKey}
-                    style={{ borderRadius: 10, overflow: 'hidden',  position: "50%" }}
-                />
-                <div class="input-container">
-                    <input type="text" class="text-input" placeholder=" "
+                <div className="youtube-container">
+                    <YouTube
+                        id={"preview"}
+                        videoId={vidKey}
+                        style={{ borderRadius: 10, overflow: 'hidden'}}
+                    />
+                </div>
+
+                <div className="input-container">
+                    <input type="url" className="text-input" placeholder=" "
                     value={url} onChange={event => setUrl(event.target.value)}></input>
-                    <span class="text-input-placeholder">Enter YouTube url here...</span>
+                    <span className="text-input-placeholder">Enter YouTube url here...</span>
                 </div>
 
                 <p>This song can play if <span style={{ fontWeight: "bold" }}>any</span> of the following condition sets are true:</p>
@@ -129,3 +151,35 @@ function AddSong() {
 }
 
 export default AddSong;
+
+
+    // window.addEventListener('load',function(){
+    //     initializeV();
+    //     function initializeV(){
+    //         console.log("resizing...!");
+
+    //         //1% of the parent viewport width (same as 1vw):
+    //         var vw = window.parent.innerWidth/100;
+    //         var width = 60*vw;
+    //         var height = width* 9.0 / 16.0;
+
+    //         //assign width and height to the video frame
+    //         const elm = document.getElementById('preview');
+    //         if(elm != null){
+    //             elm.setAttribute("style", "width:"+width+"px;");
+    //             elm.setAttribute("style", "height:"+height+"px;");
+    //             console.log("finished changing");
+    //         }
+    //         else{
+    //             console.log("could not find an element with the id 'preview'");
+    //         }
+
+    //     }
+    
+    //     window.addEventListener('resize',function(){
+    //         console.log("pain!");
+
+    //         //when the browser window is resized; recalculate
+    //         initializeV();
+    //     });
+    // });

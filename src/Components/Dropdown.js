@@ -14,7 +14,7 @@ function Dropdown({title, uniqueID, entries}) {
     <div className='dropdown-container'>
 
     <select className='dropdown' name={title} id={uniqueID} onChange={handleSelectChange} value={selected}>
-        <option value="" selected disabled hidden>{title}</option>
+        <option value="" defaultValue={true} disabled hidden>{title}</option>
         {entries.map((entry, index) => (
             <option key={index} value={entry}>{entry}</option>
             ))}    

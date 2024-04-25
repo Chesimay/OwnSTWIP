@@ -26,7 +26,7 @@ function HomePage({background}) {
                 palette={palette}
                 />
                 <IconDisplay 
-                icon={'3ain'}
+                icon={'Rain'}
                 text={'Raining'}
                 palette={palette}
                 />

@@ -111,10 +111,10 @@ function AddSong() {
 
     return (
         <div className="page">
-            <div className='left-justified'>
+            {/* <div className='left-justified'>
                 <p>Add Song</p>
                 <p>Add Playlist</p>
-            </div>
+            </div> */}
             <div className='centered'>
                 <div className="youtube-container">
                     <YouTube
@@ -132,19 +132,21 @@ function AddSong() {
 
                 <p>This song can play if <span style={{ fontWeight: "bold" }}>any</span> of the following condition sets are true:</p>
                 <ConditionSet />
-                <div className='evenly-spaced'>
-                    <IconButton
-                        icon={'X'}
-                        text={'Quit'}
-                        palette={palette}
-                        linkTo={"/"}></IconButton>
+                <footer className='foot'>
+                    <div className='evenly-spaced'>
+                        <IconButton
+                            icon={'X'}
+                            text={'Quit'}
+                            palette={palette}
+                            linkTo={"/"}></IconButton>
 
-                    <IconButton
-                        icon={'check'}
-                        text={'Add Song'}
-                        palette={palette}
-                        linkTo={"/"}></IconButton>
-                </div>
+                        <IconButton
+                            icon={'check'}
+                            text={'Add Song'}
+                            palette={palette}
+                            linkTo={"/"}></IconButton>
+                    </div>
+                </footer>
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import '../CSS/Icon.css';
 import IconImg from './IconImg.js';
 
-function IconButton({icon, text, palette, linkTo}) {
+function IconButton({icon, text, palette, onClick, linkTo}) {
   var id = icon+"-"+text;
   var i = 1;
   while(document.getElementById(id) != null){
@@ -11,7 +11,7 @@ function IconButton({icon, text, palette, linkTo}) {
   }
 
   return (
-    <div className='Icon-background' id={id}>
+    <div className='Icon-background' id={id} onClick={onClick}>
       <Link to={linkTo}>
         <div className="Icon-button">
 

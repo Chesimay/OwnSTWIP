@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "../CSS/Toggle.css";
 import "../CSS/Settings.css";
+import "../index.css";
 import IconButton from '../Components/IconButton';
 
 function Settings() {
@@ -19,6 +20,23 @@ function Settings() {
 
   const handleZipCodeChange = (e) => {
     setZipCode(e.target.value);
+  };
+  
+  const handleActivityChange = (index, newValue) => {
+    const updatedActivities = [...activities];
+    updatedActivities[index] = newValue;
+    setActivities(updatedActivities);
+  };
+
+  const handleActivityRemove = (index) => {
+    console.log("removing "+activities[index]+"...");
+    const updatedActivities = [...activities];
+    updatedActivities.splice(index, 1);
+    setActivities(updatedActivities);
+  };
+
+  const handleAddActivity = () => {
+    setActivities([...activities, ""]);
   };
 
   return (
@@ -88,17 +106,19 @@ function Settings() {
                 />)}
                 </label>
             </div>
-            <div >
+            <div className='small-button'>
                 <h3>Edit Activities</h3>
                 <p>Hint: Press Windows+"." or CTRL+CMD+space bar on Mac to open the emoji keyboard.</p>
+                {/* The following divs should be contained in such a way that they can be drag & dropped to reorder them, and their new order
+                should be readable so that the array activity can be reordered to mirror the arrangement of the divs*/}
                 {activities.map((activity, index) => (
-                    <div className='settings-list-div'>
-                        <p>{index}</p>
-                        <input type="text" defaultValue={activity}></input>
-                        <IconButton icon="X" text="Remove" />
+                    <div key={index} className='evenly-spaced small-button activity-div'>
+                        <p className='minip'>{index}</p>
+                        <input type="text" value={activity} onChange={(e) => handleActivityChange(index, e.target.value)}></input>
+                        <IconButton icon="X" text="Remove" onClick={() => handleActivityRemove(index)} />
                     </div>
-                    ))}
-                    <IconButton icon="plus" text="Add Activity"/>    
+                ))}
+                <IconButton icon="plus" text="Add Activity" onClick={() => handleAddActivity()}/>    
             </div>
         </div>
         

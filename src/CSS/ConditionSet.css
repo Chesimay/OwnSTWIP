@@ -1,0 +1,5 @@
+.dropdown-container{
+    background-color: var(--light-gray);
+    padding: 10px;
+    color: var(--black);
+}

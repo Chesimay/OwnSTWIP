@@ -43,3 +43,13 @@ input[type="checkbox"]:not(:checked) ~ p.left-toggle {
 input[type="checkbox"]:not(:checked) ~ p.right-toggle {
     background-color: red;
 }
+
+.activity-div{
+    background-color: var(--light-gray);
+    margin: 3px;
+    padding: 1vw;
+    border-radius: 10px;
+}
+.activity-div.minip {
+    color: var(--dark-gray);
+}

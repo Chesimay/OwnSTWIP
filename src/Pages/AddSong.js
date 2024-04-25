@@ -86,20 +86,20 @@ function AddSong() {
         
     function getWindowSize() {
         const {innerWidth, innerHeight} = window;
-        console.log("new size");
+        //console.log("new size");
 
             //1% of the parent viewport width (same as 1vw):
             var vw = innerWidth/100;
             var width = 60*vw;
             var height = width* 9.0 / 16.0;
-            console.log(width+", "+height);
+            //console.log(width+", "+height);
 
             //assign width and height to the video frame
             const elm = document.getElementById('preview');
             if (elm != null) {
                 elm.style.width = width + 'px';
                 elm.style.height = height + 'px';
-                console.log("finished changing");
+                //console.log("finished changing");
             }
             else{
                 //console.log("could not find an element with the id 'preview'");

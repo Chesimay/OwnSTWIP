@@ -29,7 +29,7 @@ function Settings() {
   };
 
   const handleActivityRemove = (index) => {
-    console.log("removing "+activities[index]+"...");
+    //console.log("removing "+activities[index]+"...");
     const updatedActivities = [...activities];
     updatedActivities.splice(index, 1);
     setActivities(updatedActivities);
@@ -113,7 +113,7 @@ function Settings() {
                 should be readable so that the array activity can be reordered to mirror the arrangement of the divs*/}
                 {activities.map((activity, index) => (
                     <div key={index} className='evenly-spaced small-button activity-div'>
-                        <p className='minip'>{index}</p>
+                        <p className='minip'>{index+1}</p>
                         <input type="text" value={activity} onChange={(e) => handleActivityChange(index, e.target.value)}></input>
                         <IconButton icon="X" text="Remove" onClick={() => handleActivityRemove(index)} />
                     </div>

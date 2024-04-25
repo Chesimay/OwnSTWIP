@@ -33,3 +33,17 @@
     align-items: center;
     color: #919191;
   }
+  
+  
+.Icon-infocus-display-area {
+    width: 100%;
+    max-width: 75px;
+    aspect-ratio: 1/1;
+    margin: 2%;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #919191;
+  }

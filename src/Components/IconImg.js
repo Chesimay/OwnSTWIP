@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 
 
-function IconButton({icon, palette, hover}) {
+function IconButton({icon, palette, hover, focus}) {
   
     //note to self: I should really make an enum of all the available icons
     // it should include "plus", "gear", "back", "X", "check", "rain", and "square", at least
@@ -13,11 +13,15 @@ function IconButton({icon, palette, hover}) {
     let lightFill = "#c9c9c9";
     let fillStr = "#919191";
     let darkFill = "#575757";
+    let className = "Icon-display-area";
+    if(focus){
+      className = "Icon-infocus-display-area";
+    }
 
     if (icon.includes("plus")){
 
       return (
-        <div className="Icon-display-area">
+        <div className={className}>
           <svg width="100" height="100" viewBox="0 0 100 100">
               <title>plus sign</title> {/* This is the alt text for the svg */}
               {/* Horizontal rectangle */}
@@ -33,7 +37,7 @@ function IconButton({icon, palette, hover}) {
     if (icon.includes("check")){
 
       return (
-        <div className="Icon-display-area">
+        <div className={className}>
           <svg width="100" height="100" viewBox="0 0 100 100">
               <title>check mark</title>
               {/* longer rectangle */}
@@ -48,7 +52,7 @@ function IconButton({icon, palette, hover}) {
 
     if (icon.includes("gear")){
       return (
-        <div className="Icon-display-area">
+        <div className={className}>
           <svg width="100" height="100" viewBox="0 0 100 100">
               <title>gear icon</title>
               {/* Horizontal rectangle */}
@@ -75,7 +79,7 @@ function IconButton({icon, palette, hover}) {
 
     if (icon.includes("back")){
       return (
-        <div className="Icon-display-area">
+        <div className={className}>
 
           <svg width="100" height="100" viewBox="0 0 100 100">
               <title>spreadsheet icon</title>
@@ -94,7 +98,7 @@ function IconButton({icon, palette, hover}) {
     
     if (icon.includes("x")){
       return (
-        <div className="Icon-display-area">
+        <div className={className}>
 
           <svg width="100" height="100" viewBox="0 0 100 100">
               <title>X icon</title>
@@ -136,7 +140,7 @@ function IconButton({icon, palette, hover}) {
     };
 
     return (
-      <div className="Icon-display-area">
+      <div className={className}>
 
         <svg width="100" height="100" viewBox="0 0 100 100">
             <title>{icon}</title>

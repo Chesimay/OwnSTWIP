@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import YouTube from 'react-youtube';
+import IconButton from './IconButton.js';
 import "../index.css";
 const VidPlaylist = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -32,8 +33,12 @@ const VidPlaylist = () => {
             autoplay: 1,
           }, }}
       />
-    <button onClick={handleVideoEnd}>⏭</button>
-    <button>✎</button>
+      <div className='centered small-button'>
+        <IconButton icon={"✏️"} text={""} linkTo={"/add-song"}></IconButton>
+        <button onClick={handleVideoEnd}>⏭</button>
+
+      </div>
+    <button >✎</button>
 
 
     </div>

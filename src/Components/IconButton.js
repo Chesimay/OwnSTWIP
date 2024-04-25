@@ -10,14 +10,26 @@ function IconButton({icon, text, palette, onClick, linkTo}) {
       i++;
   }
 
+  if(text !== null && text !== ""){
+
+    return (
+      <div className='Icon-background' id={id} onClick={onClick}>
+        <Link to={linkTo}>
+          <div className="Icon-button">
+
+            <IconImg icon={icon} palette={palette} />
+            <p>{text}</p>
+            
+          </div>
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className='Icon-background' id={id} onClick={onClick}>
       <Link to={linkTo}>
         <div className="Icon-button">
-
-          <IconImg icon={icon} palette={palette} />
-          <p>{text}</p>
-          
+          <IconImg icon={icon} palette={palette} focus={true}/>          
         </div>
       </Link>
     </div>

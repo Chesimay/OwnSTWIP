@@ -50,6 +50,10 @@ input[type="checkbox"]:not(:checked) ~ p.right-toggle {
     padding: 1vw;
     border-radius: 10px;
 }
-.activity-div.minip {
+.activity-div .minip {
     color: var(--dark-gray);
+    font-size: calc(10px + 0.5vw);
+    position: relative;
+    top: -3.5vh;
+    left: 0px;
 }

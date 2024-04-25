@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 
 
-function IconButton({icon, palette, hover, focus}) {
+function IconImg({icon, palette, hover, focus}) {
   
     //note to self: I should really make an enum of all the available icons
     // it should include "plus", "gear", "back", "X", "check", "rain", and "square", at least
@@ -160,4 +160,4 @@ function IconButton({icon, palette, hover, focus}) {
         */
   }
   
-  export default IconButton;
+  export default IconImg;

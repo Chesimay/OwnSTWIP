@@ -5,6 +5,8 @@ import "../index.css";
 const Checklist = ({ title, items, columns = 1 }) => {
   const [checkedItems, setCheckedItems] = useState({});
 
+  //console.log("is \"items\" an array? "+Array.isArray(items));
+
   const handleCheckboxChange = (item, isChecked) => {
     const newCheckedItems = { ...checkedItems };
 

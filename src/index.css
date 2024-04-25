@@ -75,7 +75,14 @@ button{
 .small-button{
   width: fit-content;
 }
-.small-button p{  font-size:calc(12px + 0.5vw);}
+.small-button .Icon-button p{  font-size:calc(12px + 0.5vw);}
+.tiny-button{
+  width: fit-content;
+}
+.tiny-button p{  font-size:calc(2px + 0.5vw);}
+.tiny-button .Icon-infocus-display-area {
+  max-height: 40px;
+}
 
 
 

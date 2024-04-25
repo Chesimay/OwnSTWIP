@@ -33,13 +33,10 @@ const VidPlaylist = () => {
             autoplay: 1,
           }, }}
       />
-      <div className='centered small-button'>
+      <div className='centered tiny-button'>
         <IconButton icon={"✏️"} text={""} linkTo={"/add-song"}></IconButton>
-        <button onClick={handleVideoEnd}>⏭</button>
-
+        <IconButton icon={"⏭️"} text={""} onClick={handleVideoEnd}></IconButton>
       </div>
-    <button >✎</button>
-
 
     </div>
   );

@@ -19,6 +19,7 @@ function HomePage({background}) {
         <div className='centered'>
             <p>{timeyText[1]}</p>
             <h1>{timeyText[2]}</h1>
+
             <div className='evenly-spaced'>
                 <IconDisplay 
                 icon={'35'}
@@ -31,21 +32,23 @@ function HomePage({background}) {
                 palette={palette}
                 />
             </div>
-        </div>
-        <div className='left-aligned'>
 
-        <p>Select your current activity:</p>
-        </div>
-        <div className='centered'>
-                 {/* In theory, these entries should be grabbed from the current account's settings db entry
-           <Dropdown 
-          title={"Current activity:"}
-          uniqueID={"activity_selector"}
-          entries={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]}/>
-           */}
-            <Carousel items={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]} />
-        </div>
-        <div className='centered'>
+            <div style={{width:"90%", padding:"1vw"}}>
+                <div className='left-aligned'>
+
+                <p>Select your current activity:</p>
+                </div>
+                <div className='centered'>
+                        {/* In theory, these entries should be grabbed from the current account's settings db entry
+                <Dropdown 
+                title={"Current activity:"}
+                uniqueID={"activity_selector"}
+                entries={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]}/>
+                */}
+                    <Carousel items={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]} />
+                </div>
+            </div>
+
             <div className='evenly-spaced'>
                     <IconButton 
                     icon={'plus'}

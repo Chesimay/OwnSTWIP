@@ -16,8 +16,12 @@ class Season {
       this.name = name;
       this.repeatsYearly = repeatsYearly;
       this.rangeArr = rangeArr;
-      this.firstDate = rangeArr[0].startDate;
-      this.endDate = rangeArr[0].endDate;
+    }
+    get nextStartDate(){
+        return rangeArr[0].startDate;
+    }
+    get nextEndDate(){
+        return rangeArr[0].endDate;
     }
   }
 
@@ -25,6 +29,11 @@ export default SettingsProvider ({ children })
 {
   const [settings, setSettings] = useState({
     // Your initial settings here
+    seasons : [new Season("🎃 Spooky", true, [new DateRange(new Date(2024, 10, 10), new Date(2024, 11, 1, 3))])],
+    activities: ["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"],
+    twentyFourHourClock : true,
+    celsius: true,
+    zipCode: -1
   });
 
   return (

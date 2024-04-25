@@ -4,8 +4,11 @@ import IconButton from "../Components/IconButton.js";
 import IconDisplay from "../Components/IconDisplay.js";
 import Carousel from '../Components/Carousel.js';
 import useDate from "../TimeGetter.js";
+import { useSettings } from '../Non-Component_JS_Files/SettingsContext';
 
 function HomePage({background}) {
+    const { settings, setSettings } = useSettings();
+
     //if background photo is in this enum
     let palette = "dark";
     //if it is in this other enum, let palette = "light";
@@ -39,13 +42,12 @@ function HomePage({background}) {
                 <p>Select your current activity:</p>
                 </div>
                 <div className='centered'>
-                        {/* In theory, these entries should be grabbed from the current account's settings db entry
-                <Dropdown 
-                title={"Current activity:"}
-                uniqueID={"activity_selector"}
-                entries={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]}/>
-                */}
-                    <Carousel items={["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]} />
+                    { //a ternary to check if settings have loaded
+                            ((!settings || settings == undefined) ? (
+                                <p>Loading...</p>
+                            ) :
+                            <Carousel items={settings.activities} />
+                        )}
                 </div>
             </div>
 

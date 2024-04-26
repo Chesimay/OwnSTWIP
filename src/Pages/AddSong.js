@@ -133,7 +133,11 @@ function AddSong() {
                 </div>
 
                 <p>This song can play if <span style={{ fontWeight: "bold" }}>any</span> of the following condition sets are true:</p>
-                <ConditionSet />
+                <ConditionSet uniqueID={1}/>
+                <IconButton icon={'plus'}
+                            text={'Add Condition Set'}
+                            palette={palette}
+                            />
                 <footer className='foot'>
                     <div className='evenly-spaced'>
                         <IconButton

@@ -3,6 +3,7 @@
     padding: 10px;
     color: var(--black);
     display: grid; align-items:center; 
+    width: 33vw;
 }
 .note{
     color: var(--dark-gray);

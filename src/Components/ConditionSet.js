@@ -5,6 +5,7 @@ import Checklist from './Checklist';
 import PopUp from './PopUp';
 import IconButton from './IconButton';
 import { Activity, useSettings } from '../Non-Component_JS_Files/SettingsContext';
+import IconImg from './IconImg';
 
 function ConditionSet({ uniqueID }) {
     const [lowTemp, setLowTemp] = useState();
@@ -38,7 +39,10 @@ function ConditionSet({ uniqueID }) {
     
     return (
         <div className='dropdown-container'>
-            <h1>Condition Set {uniqueID}</h1>
+            <div className='evenly-spaced'>
+                <h1>Condition Set {uniqueID}</h1>
+                <IconImg icon={(isOpen? "down" : "up")} />
+            </div>
             {isOpen ?
                 (<div ref={conditionRef}>
                     <PopUp
@@ -136,7 +140,7 @@ function ConditionSet({ uniqueID }) {
                 </div>
                 </div>)
                 :
-                (<div ref={conditionRef}>haha loser</div>)}
+                (<div ref={conditionRef}></div>)}
         </div>
     );
 }

@@ -50,6 +50,38 @@ function IconImg({icon, palette, hover, focus}) {
     
     }
 
+    if (icon.includes("down")){
+
+      return (
+        <div className={className}>
+          <svg width="100" height="100" viewBox="0 0 100 100">
+              <title>downwards arrow</title>
+              {/* right rectangle */}
+              <rect x="5" y="43" width="52.5" height="16" transform="rotate(-135 50 50)" style={{fill: fillStr}}/>
+              {/* left rectangle */}
+              <rect x="43" y="5" width="16" height="52.5" transform="rotate(-135 50 50)" style={{fill: fillStr}}/>
+          </svg>
+        </div>
+        );
+    
+    }
+    
+    if (icon.includes("up")){
+
+      return (
+        <div className={className}>
+          <svg width="100" height="100" viewBox="0 0 100 100">
+              <title>upwards arrow</title>
+              {/* right rectangle */}
+              <rect x="5" y="43" width="52.5" height="16" transform="rotate(45 50 50)" style={{fill: fillStr}}/>
+              {/* left rectangle */}
+              <rect x="43" y="5" width="16" height="52.5" transform="rotate(45 50 50)" style={{fill: fillStr}}/>
+          </svg>
+        </div>
+        );
+    
+    }
+
     if (icon.includes("gear")){
       return (
         <div className={className}>

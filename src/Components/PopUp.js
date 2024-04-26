@@ -1,14 +1,16 @@
-import React, { useState, useRef, useEffect, type } from 'react'; 
+import React, { useState, useRef, useEffect } from 'react'; 
 import '../CSS/PopUp.css';
 import Checklist from './Checklist';
 
-const PopUp = ({ title, onSave, hidden, setHidden }) => {
+const PopUp = ({ title, onSave, hidden, setHidden, type }) => {
   const [name, setName] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [yearly, setYearly] = useState(false);
 
   const [showWarning, setShowWarning] = useState(false);
+  const [showWarningDate, setShowWarningDate] = useState(false);
+
   const popupRef = useRef(null);
 
   const hide = () => {

@@ -1,7 +1,10 @@
 /* Checklist.css */
-
+.checklist-and-title{
+  
+}
 .checklist {
     list-style: none;
+    
   }
   
   .checkbox-and-label {

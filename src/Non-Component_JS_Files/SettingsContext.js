@@ -69,7 +69,7 @@ export default function SettingsProvider({ children }) {
     const [settings, setSettings] = useState({
         // Your initial settings here
         seasons: [new Season("🎃 Spooky", true, [new DateRange(new Date(2024, 10, 10), new Date(2024, 11, 1, 3))])],
-        activities: [new Activity(0,"🎧 Chilling"), new Activity(1,"🧑‍💻 Working"), new Activity(2,"🏃Exercising"), 
+        activities: [new Activity(0,"🎧 Chilling"), new Activity(1,"🧑‍💻 Working"), new Activity(2,"🏃 Exercising"), 
                      new Activity(3, "🫧 Doing Chores"), new Activity(4, "💤 Sleeping"),new Activity(5, "🚋 In Transit")],
         currentActivity: 0,
         twentyFourHourClock: true,

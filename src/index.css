@@ -75,7 +75,10 @@ button{
 .small-button{
   width: fit-content;
 }
-.small-button .Icon-button p{  font-size:calc(12px + 0.5vw);}
+.small-button .Icon-button p{  
+  font-size:calc(12px + 0.5vw);
+  max-width: 100px;
+}
 .tiny-button{
   width: fit-content;
 }

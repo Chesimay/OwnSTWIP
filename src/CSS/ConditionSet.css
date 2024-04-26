@@ -2,4 +2,16 @@
     background-color: var(--light-gray);
     padding: 10px;
     color: var(--black);
+    display: grid; align-items:center; 
+}
+.note{
+    color: var(--dark-gray);
+    max-width: 33vw;
+    text-align: center;
+    align-self: center;
+}
+.sub-note{
+    color: var(--dark-gray);
+    max-width: 25%;
+    text-align: center;
 }

@@ -30,12 +30,12 @@ function HomePage({background}) {
 
             <div className='evenly-spaced'>
                 <IconDisplay 
-                icon={'35'}
-                text={'° F'}
+                icon={(settings.celsius ? '19' : '67')}
+                text={(settings.celsius ? '° C' : '° F')}
                 palette={palette}
                 />
                 <IconDisplay 
-                icon={'Rain'}
+                icon={'🌧️'}
                 text={'Raining'}
                 palette={palette}
                 />

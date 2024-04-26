@@ -39,7 +39,8 @@ const VidPlaylist = () => {
         <IconButton icon={"✏️"} text={""} linkTo={"/add-song"}></IconButton>
         <IconButton icon={"⏭️"} text={""} onClick={handleVideoEnd}></IconButton>
       </div>
-      <p>{settings.videoList[currentVideoIndex].title}</p>
+      {/* For later, if I can figure out the API call
+       <p>{settings.videoList[currentVideoIndex].title}</p> */}
     </div>
   );
 };

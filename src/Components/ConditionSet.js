@@ -61,6 +61,7 @@ function ConditionSet({title, uniqueID, entries}) {
         <option value="" defaultValue={true} disabled hidden>{title}</option>
          
     </select>
+    <p className='note'>Any category with <span style={{fontWeight:"bold"}}>no</span> selections will not be considered as part of this condition set. </p>
     <Checklist 
     title={"Solar Day"}
     items={["🏙️ Daylight", "🌃 Night", "🌇 Twilight", ["Sunrise Twilight", "Sunset Twilight"]]} />
@@ -86,22 +87,22 @@ function ConditionSet({title, uniqueID, entries}) {
 
     <h2>Temperature Range</h2>
     <div className='evenly-spaced'>
-        <div className='evenly-spaced' style={{flexGrow: "1", width:"40%"}}>
+        <div style={{flexGrow: "1", width:"40%"}}>
             <div className="input-container">
                 <input type="number" className="text-input" placeholder=" " step = ".01"
                 value={lowTemp} onChange={event => setLowTemp(event.target.value)} style={{flexGrow: "1", width:"80%"}}></input>
                 <span className="text-input-placeholder">Low</span>
             </div>
-            <p>°F</p>
+            <p>{(settings.celsius ? '° C' : '° F')}</p>
         </div>
         <p style={{flexGrow: "3", width: "20%"}}>&emsp; - &emsp;</p>
-        <div className='evenly-spaced' style={{flexGrow: "1", width:"40%"}}>
+        <div  style={{flexGrow: "1", width:"40%"}}>
             <div className="input-container">
                 <input type="number" className="text-input" placeholder=" " step = ".01"
                 value={highTemp} onChange={event => setHighTemp(event.target.value)}></input>
                 <span className="text-input-placeholder">High</span>
             </div>
-            <p>°F</p>
+            <p>{(settings.celsius ? '° C' : '° F')}</p>
         </div>
     </div>
 
@@ -109,9 +110,9 @@ function ConditionSet({title, uniqueID, entries}) {
         <Checklist 
         title={"Activity"}
         items={settings.activities.map((element) => {return element.name;})} /* get the names of each activity */
-        columns={1} /* was Math.ceil(activities.length/6.0), but the follow div would need to be absolute to make it work */ 
+        columns={1} /* was Math.ceil(activities.length/6.0), but the following div would need to be absolute to make it work */ 
         />
-        <div className="small-button" style={{padding:"10px", flexGrow: 1,alignContent: "top", justifyContent: 'right'}}>
+        <div className="small-button" style={{padding:"10px", flexGrow: 0.2,alignContent: "top", justifyContent: 'right'}}>
             <IconButton 
             icon={"plus"}
             text={"Add Activity"}
@@ -120,7 +121,6 @@ function ConditionSet({title, uniqueID, entries}) {
             />
         </div>
     </div>
-    
 
     </div>
   );

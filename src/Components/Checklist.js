@@ -60,7 +60,7 @@ const Checklist = ({ title, items, columns = 1 }) => {
     const itemsSecondHalf = items.slice(halfIndex, items.length);
     
     return (
-        <div>
+        <div className='checklist-and-title'>
           <h2>{title}</h2>
           <div className='evenly-spaced'>
           {renderChecklist(itemsFirstHalf)}
@@ -71,7 +71,7 @@ const Checklist = ({ title, items, columns = 1 }) => {
   }
 
   return (
-    <div>
+    <div className='checklist-and-title'>
       <h2>{title}</h2>
       {renderChecklist(items)}
     </div>

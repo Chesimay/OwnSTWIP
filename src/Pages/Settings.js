@@ -80,34 +80,56 @@ function Settings() {
             <div className='settings-list-div'>
                 <div className='settings-div'>
 
-                    <p className='left-toggle'>Celcius</p>
+                    <p className='left-toggle' onClick={() => 
+                        {
+                            setSettings(settings => ({...settings,celsius: false}));
+                            document.getElementById("Celsius").checked = false;
+                        }
+                        }>Fahrenheit</p>
                     <div className='toggle-div'>
                         <label className="toggle-switch">
                             <input
                                 type="checkbox"
                                 checked={settings.celsius}
                                 onChange={handleUnitToggle}
+                                id='Celsius'
                             />
                             <span className="toggle-slider round"></span>
                         </label>
                     </div>
-                    <p className='right-toggle'>Fahrenheit</p>
+                    <p className='right-toggle'onClick={() => 
+                        {
+                            setSettings(settings => ({...settings,celsius: true}));
+                            document.getElementById("Celsius").checked = true;
+                        }
+                        }>Celsius</p>
 
                 </div>
                 <div className='settings-div'>
 
-                    <p className='left-toggle'>12-Hour Clock</p>
+                    <p className='left-toggle' onClick={() => 
+                        {
+                            setSettings(settings => ({...settings,twentyFourHourClock: false}));
+                            document.getElementById("TwentyFourHour").checked = false;
+                        }
+                        }>12-Hour Clock</p>
                     <div className='toggle-div'>
                         <label className="toggle-switch">
                             <input
                                 type="checkbox"
                                 checked={settings.twentyFourHourClock}
                                 onChange={handleClockToggle}
+                                id="TwentyFourHour"
                             />
                             <span className="toggle-slider round"></span>
                         </label>
                     </div>
-                    <p className='right-toggle'>24-Hour Clock</p>
+                    <p className='right-toggle' onClick={() => 
+                        {
+                            setSettings(settings => ({...settings,twentyFourHourClock: true}));
+                            document.getElementById("TwentyFourHour").checked = true;
+                        }
+                        }>24-Hour Clock</p>
 
                 </div>
                 <div className='settings-div'>

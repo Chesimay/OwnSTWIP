@@ -12,7 +12,13 @@ const VidPlaylist = () => {
     //CURRENTLY:
     // Increment the index to switch to the next video
     setCurrentVideoIndex((prevIndex) =>
-      prevIndex === settings.videoList.length - 1 ? 0 : prevIndex + 1
+      {
+        var index = Math.floor(Math.random()*settings.videoList.length);
+        while(index==prevIndex){
+          index = Math.floor(Math.random()*settings.videoList.length);
+        }
+        return index;
+      }
     );
     
     //IN THE FUTURE:

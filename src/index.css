@@ -91,8 +91,9 @@ button{
 
 .input-container {
   position: relative;
-  width: 80%; /* Adjust the width as needed */
+  width: 80%;
 }
+
 
 /* Style for the text input */
 .text-input {

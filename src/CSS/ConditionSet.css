@@ -15,3 +15,16 @@
     max-width: 25%;
     text-align: center;
 }
+.text-input-holder{
+    display: flex;
+    max-width: 40%;
+    align-content: top;
+    justify-content: center;
+}
+.text-input-descriptor{
+    max-width: 30%;
+}
+.text-input{
+  flex-grow: 1;
+  max-width: 70%;
+}

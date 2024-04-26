@@ -75,7 +75,7 @@ export default function SettingsProvider({ children }) {
         twentyFourHourClock: true,
         celsius: true,
         zipCode: -1,
-        videoList: [new Video('_3ngiSxVCBs'), new Video('ddw_LOCXJmo'), new Video('In_06EmHhuk'), new Video('l9raQQ-ehH8')] // Array of YouTube video IDs
+        videoList: [new Video('_3ngiSxVCBs'), new Video('ddw_LOCXJmo'), new Video('In_06EmHhuk'), new Video('l9raQQ-ehH8'), new Video("B964fCAcbDU")] // Array of YouTube video IDs
 
     });
 

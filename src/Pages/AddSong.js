@@ -3,12 +3,14 @@ import IconButton from "../Components/IconButton.js";
 import ConditionSet from "../Components/ConditionSet.js";
 import YouTube from 'react-youtube';
 import React, {useState, useEffect} from 'react';
+import { useSettings } from '../Non-Component_JS_Files/SettingsContext';
 
 function AddSong() {
     let palette = "light";
 
     const [url, setUrl] = useState('');
     const [vidKey, setVidKey] = useState('invalid url');
+    const { settings, setSettings } = useSettings();
 
     /*
     Activates whenever url changes, determines if url is a valid YouTube url and, 
@@ -153,35 +155,3 @@ function AddSong() {
 }
 
 export default AddSong;
-
-
-    // window.addEventListener('load',function(){
-    //     initializeV();
-    //     function initializeV(){
-    //         console.log("resizing...!");
-
-    //         //1% of the parent viewport width (same as 1vw):
-    //         var vw = window.parent.innerWidth/100;
-    //         var width = 60*vw;
-    //         var height = width* 9.0 / 16.0;
-
-    //         //assign width and height to the video frame
-    //         const elm = document.getElementById('preview');
-    //         if(elm != null){
-    //             elm.setAttribute("style", "width:"+width+"px;");
-    //             elm.setAttribute("style", "height:"+height+"px;");
-    //             console.log("finished changing");
-    //         }
-    //         else{
-    //             console.log("could not find an element with the id 'preview'");
-    //         }
-
-    //     }
-    
-    //     window.addEventListener('resize',function(){
-    //         console.log("pain!");
-
-    //         //when the browser window is resized; recalculate
-    //         initializeV();
-    //     });
-    // });

@@ -12,7 +12,12 @@ function HomePage({background}) {
     //if background photo is in this enum
     let palette = "dark";
     //if it is in this other enum, let palette = "light";
-    let timeyText = useDate(/* setting for military time */);
+    let timeyText = useDate(settings.twentyFourHourClock);
+
+    // startingIndex will be passed as a prop to Carousel component
+    //if the item is no longer in the carousel, go back to the second-to-last item
+    ///WAIT WAIT WAIT actually please find the activity with the correct ID and use that index
+    const startingIndex = Math.min(settings.currentActivity, settings.activities.length - 1);
 
   return (
     <div className="page">
@@ -46,8 +51,16 @@ function HomePage({background}) {
                             ((!settings || settings == undefined) ? (
                                 <p>Loading...</p>
                             ) :
-                            <Carousel items={settings.activities} />
-                        )}
+                                <Carousel 
+                                    items={settings.activities.map((element) => {return element.name;})}
+                                    startingIndex={startingIndex}
+                                    onChange={(index) => {
+                                        setSettings(settings => ({
+                                            ...settings,
+                                            currentActivity: index
+                                        }));
+                                }}/>
+                            )}
                 </div>
             </div>
 

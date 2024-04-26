@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Checklist from './Checklist';
 import PopUp from './PopUp';
 import IconButton from './IconButton';
+import { Activity, useSettings } from '../Non-Component_JS_Files/SettingsContext';
 
 function ConditionSet({title, uniqueID, entries}) {
     const [selected, setSelected] = useState('');
@@ -11,8 +12,8 @@ function ConditionSet({title, uniqueID, entries}) {
     const [highTemp, setHighTemp] = useState();
     const [activityPopup, setActivityPopup] = useState(false);
     const [seasonPopup, setSeasonPopup] = useState(false);
-    const [activities, setActivities] = useState(["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]);
-    const [seasons, setSeasons] = useState(["🎃 Spooky"]);
+    const { settings, setSettings } = useSettings();
+    
 
 
     const handleSelectChange = (event) => {
@@ -27,14 +28,32 @@ function ConditionSet({title, uniqueID, entries}) {
             title={"Add Activity"}
             hidden={activityPopup}
             setHidden={() => setActivityPopup(false)}
-            onSave={(name) => {setActivities([...activities, name]); console.log("testing, adding "+name+"...");}}
+            onSave={(name) => {
+                //make a new activity with the given name and an ID one higher than the last ID in the list
+                //a VERY jank solution to the ID problem, but it works for now
+                const max = settings.activities.length-1;
+                const updatedActivities = [...settings.activities, new Activity(settings.activities[max].id+1, name)];
+                setSettings(settings => ({
+                    ...settings,
+                    activities: updatedActivities
+                }));
+                console.log("testing, adding "+name+"...");
+            }}
             type={"activity"}
         />
         <PopUp 
             title={"Add Season"}
             hidden={seasonPopup}
             setHidden={() => setSeasonPopup(false)}
-            onSave={(name) => {setActivities([...activities, name]); console.log("testing, adding "+name+"...");}}
+            onSave={(name) => {
+                const max = settings.activities.length-1;
+                const updatedActivities = [...settings.activities, new Activity(settings.activities[max].id+1, name)];
+                setSettings(settings => ({
+                    ...settings,
+                    activities: updatedActivities
+                }));
+                console.log("testing, adding "+name+"...");
+            }}
             type={"calendar"}
         />
 
@@ -47,7 +66,7 @@ function ConditionSet({title, uniqueID, entries}) {
     items={["🏙️ Daylight", "🌃 Night", "🌇 Twilight", ["Sunrise Twilight", "Sunset Twilight"]]} />
     <Checklist 
     title={"24-Hour Day"}
-    items={twelve}
+    items={(settings.twentyFourHourClock ? twentyfour : twelve)}
     columns={2} />
 
     <Checklist 
@@ -89,7 +108,7 @@ function ConditionSet({title, uniqueID, entries}) {
     <div style={{justifyContent:"space-between", width: "90%", display:"flex", alignItems: "top"}}> 
         <Checklist 
         title={"Activity"}
-        items={activities}
+        items={settings.activities.map((element) => {return element.name;})} /* get the names of each activity */
         columns={1} /* was Math.ceil(activities.length/6.0), but the follow div would need to be absolute to make it work */ 
         />
         <div className="small-button" style={{padding:"10px", flexGrow: 1,alignContent: "top", justifyContent: 'right'}}>

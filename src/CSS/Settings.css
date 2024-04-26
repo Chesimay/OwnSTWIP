@@ -54,6 +54,8 @@ input[type="checkbox"]:not(:checked) ~ p.right-toggle {
     color: var(--dark-gray);
     font-size: calc(10px + 0.5vw);
     position: relative;
-    top: -3.5vh;
+    top: -28px;
     left: 0px;
+    max-width: 0px;
+    overflow: visible;
 }

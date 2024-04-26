@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function useDate (twelve=true) {
+export default function useDate (twentyfour=false) {
     const [today, setDate] = React.useState(new Date()); // Save the current date to be able to trigger an update
 
     React.useEffect(() => {
@@ -23,7 +23,7 @@ export default function useDate (twelve=true) {
     const hour = today.getHours();
     const wish = `Good ${(hour < 12 && 'morning') || (hour < 17 && 'afternoon') || 'evening'}! It's `;
   
-    const time = today.toLocaleTimeString(locale, { hour: 'numeric', hour12: twelve, minute: 'numeric' });
+    const time = today.toLocaleTimeString(locale, { hour: 'numeric', hour12: !twentyfour, minute: 'numeric' });
   
     return [
         wish,

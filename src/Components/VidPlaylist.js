@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import YouTube from 'react-youtube';
 import IconButton from './IconButton.js';
+import { useSettings } from '../Non-Component_JS_Files/SettingsContext.js';
 import "../index.css";
 const VidPlaylist = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const videoIds = ['_3ngiSxVCBs', '0FCvzsVlXpQ', 'ddw_LOCXJmo', 'In_06EmHhuk', 'l9raQQ-ehH8']; // Array of YouTube video IDs
+  //const videoIds = ['_3ngiSxVCBs', '0FCvzsVlXpQ', 'ddw_LOCXJmo', 'In_06EmHhuk', 'l9raQQ-ehH8']; // Array of YouTube video IDs
+  const { settings, setSettings } = useSettings();
 
   const handleVideoEnd = () => {
     //CURRENTLY:
     // Increment the index to switch to the next video
     setCurrentVideoIndex((prevIndex) =>
-      prevIndex === videoIds.length - 1 ? 0 : prevIndex + 1
+      prevIndex === settings.videoList.length - 1 ? 0 : prevIndex + 1
     );
     
     //IN THE FUTURE:
@@ -25,7 +27,7 @@ const VidPlaylist = () => {
   return (
     <div className='flex-center'>
       <YouTube
-        videoId={videoIds[currentVideoIndex]}
+        videoId={settings.videoList[currentVideoIndex].id}
         onEnd={handleVideoEnd}
         style={{borderRadius:75, overflow: 'hidden',zIndex:1}}
         opts={{ width: '192', height: '108',
@@ -37,7 +39,7 @@ const VidPlaylist = () => {
         <IconButton icon={"✏️"} text={""} linkTo={"/add-song"}></IconButton>
         <IconButton icon={"⏭️"} text={""} onClick={handleVideoEnd}></IconButton>
       </div>
-
+      <p>{settings.videoList[currentVideoIndex].title}</p>
     </div>
   );
 };

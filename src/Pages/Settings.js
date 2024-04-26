@@ -3,22 +3,25 @@ import "../CSS/Toggle.css";
 import "../CSS/Settings.css";
 import "../index.css";
 import IconButton from '../Components/IconButton';
-import { useSettings } from '../Non-Component_JS_Files/SettingsContext';
-import { act } from 'react-dom/test-utils';
+import { useSettings, Activity } from '../Non-Component_JS_Files/SettingsContext';
 
 function Settings() {
-    const [unit, setUnit] = useState('Celsius');
-    const [clockFormat, setClockFormat] = useState('12-hour');
     const [zipCode, setZipCode] = useState('');
     //const [activities, setActivities] = useState(["🎧 Chilling", "🧑‍💻 Working", "🏃Exercising", "🫧 Doing Chores", "💤 Sleeping", "🚋 In Transit"]);
     const { settings, setSettings } = useSettings();
 
     const handleUnitToggle = () => {
-        setUnit(unit === 'Celsius' ? 'Fahrenheit' : 'Celsius');
+        setSettings(settings => ({
+            ...settings,
+            celsius: !settings.celsius
+          }));
     };
 
     const handleClockToggle = () => {
-        setClockFormat(clockFormat === '12-hour' ? '24-hour' : '12-hour');
+        setSettings(settings => ({
+            ...settings,
+            twentyFourHourClock: !settings.twentyFourHourClock
+          }));
     };
 
     const handleZipCodeChange = (e) => {
@@ -27,7 +30,8 @@ function Settings() {
 
     const handleActivityChange = (index, newValue) => {
         const updatedActivities = [...settings.activities];
-        updatedActivities[index] = newValue;
+        const max = settings.activities.length-1;
+        updatedActivities[index] = new Activity(updatedActivities[index].id, newValue);
         setSettings(settings => ({
             ...settings,
             activities: updatedActivities
@@ -35,7 +39,6 @@ function Settings() {
     };
 
     const handleActivityRemove = (index) => {
-        //console.log("removing "+activities[index]+"...");
         const updatedActivities = [...settings.activities];
         updatedActivities.splice(index, 1);
         setSettings(settings => ({
@@ -44,12 +47,14 @@ function Settings() {
           }));    };
 
     const handleAddActivity = () => {
-        const updatedActivities = [...settings.activities];
-        updatedActivities.push("");
+        //make a new activity with the given name and an ID one higher than the last ID in the list
+        //a VERY jank solution to the ID problem, but it works for now
+        const max = settings.activities.length-1;
+        const updatedActivities = [...settings.activities, new Activity(settings.activities[max].id+1, name)];
         setSettings(settings => ({
             ...settings,
             activities: updatedActivities
-          }));
+        }));
     };
 
     // Make sure settings is defined before accessing its properties
@@ -80,7 +85,7 @@ function Settings() {
                         <label className="toggle-switch">
                             <input
                                 type="checkbox"
-                                checked={unit === 'Fahrenheit'}
+                                checked={settings.celsius}
                                 onChange={handleUnitToggle}
                             />
                             <span className="toggle-slider round"></span>
@@ -96,7 +101,7 @@ function Settings() {
                         <label className="toggle-switch">
                             <input
                                 type="checkbox"
-                                checked={clockFormat === '24-hour'}
+                                checked={settings.twentyFourHourClock}
                                 onChange={handleClockToggle}
                             />
                             <span className="toggle-slider round"></span>
@@ -132,10 +137,12 @@ function Settings() {
                     {/* The following divs should be contained in such a way that they can be drag & dropped to reorder them, and their new order
                 should be readable so that the array activity can be reordered to mirror the arrangement of the divs*/}
                     {settings.activities.map((activity, index) => (
-                        <div key={index} className='evenly-spaced small-button activity-div'>
+                        <div key={index} className='evenly-spaced activity-div' style={{padding:"15px"}}>
                             <p className='minip'>{index + 1}</p>
-                            <input type="text" value={activity} onChange={(e) => handleActivityChange(index, e.target.value)}></input>
+                            <input className='text-input' type="text" value={activity.name} onChange={(e) => handleActivityChange(index, e.target.value)}></input>
+                            <div className='small-button'>
                             <IconButton icon="X" text="Remove" onClick={() => handleActivityRemove(index)} />
+                            </div>
                         </div>
                     ))}
                     <IconButton icon="plus" text="Add Activity" onClick={() => handleAddActivity()} />

@@ -1,12 +1,13 @@
 import React, { useState, useRef } from 'react';
 import '../CSS/Carousel.css'; 
 
-const Carousel = ({ items }) => {
-    const containerRef = useRef(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+const Carousel = ({ items, startingIndex, onChange }) => {
+  const containerRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(startingIndex);
 
   const handleItemClick = (index) => {
     setSelectedIndex(index);
+    onChange(index);
     const itemWidth = containerRef.current.children[0].offsetWidth;
     const newScrollLeft = index * itemWidth;
     containerRef.current.scrollTo({

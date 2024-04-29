@@ -108,6 +108,10 @@ function ConditionSet({ uniqueID }) {
                     </div>
                 </div>
 
+                <Checklist
+                    title={"Weather"}
+                    items={["☀️ Clear", "☁️ Cloudy", "🌦️ Sprinkling", "🌧️ Raining", "⛈️ Stormy", "🌬️ Windy", "🌫️ Foggy", "❄️ Snowing", "🌨️ Hailing"]} />
+
                 <div style={{ justifyContent: "space-between", width: "90%", display: "flex", alignItems: "top" }}>
                     <Checklist
                         title={"Activity"}

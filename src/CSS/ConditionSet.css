@@ -4,11 +4,21 @@
     color: var(--black);
     display: grid; align-items:center; 
     width: 33vw;
+    min-width: 350px;
     border-radius: 10px;
+}
+.dropdown-container .title{
+    width: 100%;
+}
+.dropdown-container .title .Icon-display-area{
+    width: auto;
+    padding: 0%;
+    justify-self: right;
 }
 .note{
     color: var(--dark-gray);
-    max-width: 33vw;
+    width: 33vw;
+    min-width: 300px;
     text-align: center;
     align-self: center;
 }

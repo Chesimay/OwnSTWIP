@@ -11,6 +11,8 @@ function AddSong() {
     const [url, setUrl] = useState('');
     const [vidKey, setVidKey] = useState('invalid url');
     const { settings, setSettings } = useSettings();
+    const [conditionSets, setConditionSets] = useState(1);
+    const [htmlCondSets, setHtmlCondSets] = useState([<ConditionSet uniqueID={1}/>]);
 
     /*
     Activates whenever url changes, determines if url is a valid YouTube url and, 
@@ -110,7 +112,16 @@ function AddSong() {
         return {innerWidth, innerHeight};
     }
   
-
+    function increaseConditionSets() {
+        var newConditionSets = conditionSets+1;
+        setConditionSets(newConditionSets);
+        setHtmlCondSets(prevHtmlCondSets => [
+            ...prevHtmlCondSets,
+            <ConditionSet key={newConditionSets} uniqueID={newConditionSets} />
+        ]);
+    }
+    
+  
     return (
         <div className="page">
             {/* <div className='left-justified'>
@@ -133,10 +144,15 @@ function AddSong() {
                 </div>
 
                 <p>This song can play if <span style={{ fontWeight: "bold" }}>any</span> of the following condition sets are true:</p>
-                <ConditionSet uniqueID={1}/>
+                
+                
+                {/* <ConditionSet uniqueID={1}/> */}
+                {htmlCondSets}
+
                 <IconButton icon={'plus'}
                             text={'Add Condition Set'}
                             palette={palette}
+                            onClick={() => increaseConditionSets()}
                             />
                 <footer className='foot'>
                     <div className='evenly-spaced'>

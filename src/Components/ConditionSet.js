@@ -25,9 +25,9 @@ function ConditionSet({ uniqueID }) {
     
     return (
         <div className='dropdown-container'>
-            <div className='evenly-spaced' onClick={toggleDropdown}>
+            <div className='evenly-spaced title' onClick={toggleDropdown}>
                 <h1 onClick={toggleDropdown}>Condition Set {uniqueID}</h1>
-                <IconImg icon={(isOpen? "down" : "up")} onClick={toggleDropdown}/>
+                <IconImg icon={(isOpen? "up" : "down")} onClick={toggleDropdown}/>
             </div>
             {isOpen ?
                 (<div>

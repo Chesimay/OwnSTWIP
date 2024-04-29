@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 
 
-function IconImg({icon, palette, hover, focus}) {
+function IconImg({icon, palette, hover}) {
   
     //note to self: I should really make an enum of all the available icons
     // it should include "plus", "gear", "back", "X", "check", "rain", and "square", at least
@@ -14,9 +14,6 @@ function IconImg({icon, palette, hover, focus}) {
     let fillStr = "#919191";
     let darkFill = "#575757";
     let className = "Icon-display-area";
-    if(focus){
-      className = "Icon-infocus-display-area";
-    }
 
     if (icon.includes("plus")){
 
@@ -50,22 +47,6 @@ function IconImg({icon, palette, hover, focus}) {
     
     }
 
-    if (icon.includes("down")){
-
-      return (
-        <div className={className}>
-          <svg width="100" height="100" viewBox="0 0 100 100">
-              <title>downwards arrow</title>
-              {/* right rectangle */}
-              <rect x="5" y="43" width="52.5" height="16" transform="rotate(-135 50 50)" style={{fill: fillStr}}/>
-              {/* left rectangle */}
-              <rect x="43" y="5" width="16" height="52.5" transform="rotate(-135 50 50)" style={{fill: fillStr}}/>
-          </svg>
-        </div>
-        );
-    
-    }
-    
     if (icon.includes("up")){
 
       return (
@@ -73,9 +54,25 @@ function IconImg({icon, palette, hover, focus}) {
           <svg width="100" height="100" viewBox="0 0 100 100">
               <title>upwards arrow</title>
               {/* right rectangle */}
-              <rect x="5" y="43" width="52.5" height="16" transform="rotate(45 50 50)" style={{fill: fillStr}}/>
+              <rect x="5" y="43" width="52.5" height="16" transform="rotate(-135 50 50) translate(10 10)" style={{fill: fillStr}}/>
               {/* left rectangle */}
-              <rect x="43" y="5" width="16" height="52.5" transform="rotate(45 50 50)" style={{fill: fillStr}}/>
+              <rect x="43" y="5" width="16" height="52.5" transform="rotate(-135 50 50) translate(10 10)" style={{fill: fillStr}}/>
+          </svg>
+        </div>
+        );
+    
+    }
+    
+    if (icon.includes("down")){
+
+      return (
+        <div className={className}>
+          <svg width="100" height="100" viewBox="0 0 100 100">
+              <title>downwards arrow</title>
+              {/* right rectangle */}
+              <rect x="5" y="43" width="52.5" height="16" transform="rotate(45 50 50) translate(10 10)" style={{fill: fillStr}}/>
+              {/* left rectangle */}
+              <rect x="43" y="5" width="16" height="52.5" transform="rotate(45 50 50)  translate(10 10)" style={{fill: fillStr}}/>
           </svg>
         </div>
         );

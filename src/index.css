@@ -83,11 +83,14 @@ button{
   width: fit-content;
 }
 .tiny-button p{  font-size:calc(2px + 0.5vw);}
-.tiny-button .Icon-infocus-display-area {
+.tiny-button .Icon-display-area {
   max-height: 40px;
+  width:100%;
 }
-
-
+.tiny-button .Icon-button p{  width: 0; overflow: hidden;}
+.tiny-button .Icon-button{
+  aspect-ratio: 1/1;
+}
 
 .input-container {
   position: relative;

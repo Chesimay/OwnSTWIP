@@ -1,0 +1,17 @@
+.condition-set-table{
+    display: table;
+    justify-self: center;
+  }
+.condition-set-row{
+    display: table-row;
+    padding: 5px;
+
+}
+.condition-set-cell{
+    display: table-cell;
+    padding: 5px;
+    margin: 5px;
+}
+.small-cell{
+    width:fit-content;
+}

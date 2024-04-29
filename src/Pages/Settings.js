@@ -138,14 +138,14 @@ function Settings() {
                     <label>
                         { //a ternary to check if a zip code has already been provided
                             (zipCode === '' ? (
-                                <input
+                                <input className='text-input'
                                     type="text"
                                     value={zipCode}
                                     onChange={handleZipCodeChange}
                                     placeholder="Enter zip code"
                                 />
                             ) :
-                                <input
+                                <input className='text-input'
                                     type="text"
                                     value={zipCode}
                                     onChange={handleZipCodeChange}

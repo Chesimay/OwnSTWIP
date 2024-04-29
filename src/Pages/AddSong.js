@@ -1,4 +1,5 @@
 import '../index.css';
+import "../CSS/ConditionTable.css";
 import IconButton from "../Components/IconButton.js";
 import ConditionSet from "../Components/ConditionSet.js";
 import YouTube from 'react-youtube';
@@ -112,6 +113,8 @@ function AddSong() {
         return {innerWidth, innerHeight};
     }
   
+    //adds another condition set to htmlCondSets and marks the new number of conditionSets 
+    //(technically redundant var, but nice)
     function increaseConditionSets() {
         var newConditionSets = conditionSets+1;
         setConditionSets(newConditionSets);
@@ -119,6 +122,22 @@ function AddSong() {
             ...prevHtmlCondSets,
             <ConditionSet key={newConditionSets} uniqueID={newConditionSets} />
         ]);
+    }
+
+    //removes a condition set with the given uniqueID from the list
+    //then adjusts each condition set in the list to have the numbers 1 - htmlCondSets.length
+    function removeConditionSet(uniqueID) {
+        setHtmlCondSets(prevHtmlCondSets => {
+            // Filter out the condition set to remove
+            const updatedHtmlCondSets = prevHtmlCondSets.filter(condSet => condSet.props.uniqueID !== uniqueID);
+            setConditionSets(conditionSets-1);
+
+            // Renumber the remaining condition sets
+            return updatedHtmlCondSets.map((condSet, index) => {
+                const updatedUniqueID = index + 1;
+                return React.cloneElement(condSet, { key: updatedUniqueID, uniqueID: updatedUniqueID });
+            });
+        });
     }
     
   
@@ -147,7 +166,25 @@ function AddSong() {
                 
                 
                 {/* <ConditionSet uniqueID={1}/> */}
-                {htmlCondSets}
+                {/* {htmlCondSets} */}
+                <div className="condition-set-table">
+                    {htmlCondSets.map((condSet, index) => (
+                        <div className="condition-set-row" key={index}>
+                            {/* <div className="condition-set-cell">{index + 1}</div> */}
+                            <div className="condition-set-cell">{condSet}</div>
+                            {htmlCondSets.length > 1 && (
+                                <div className="condition-set-cell tiny-button">
+                                    <IconButton
+                                        icon={'X'}
+                                        text={""}
+                                        palette={palette}
+                                        onClick={() => removeConditionSet(index+1)}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
 
                 <IconButton icon={'plus'}
                             text={'Add Condition Set'}

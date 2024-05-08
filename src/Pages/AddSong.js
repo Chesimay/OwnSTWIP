@@ -3,7 +3,8 @@ import "../CSS/ConditionTable.css";
 import IconButton from "../Components/IconButton.js";
 import ConditionSet from "../Components/ConditionSet.js";
 import YouTube from 'react-youtube';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import PopUp from '../Components/PopUp';
 import { useSettings } from '../Non-Component_JS_Files/SettingsContext';
 
 function AddSong() {
@@ -12,8 +13,9 @@ function AddSong() {
     const [url, setUrl] = useState('');
     const [vidKey, setVidKey] = useState('invalid url');
     const { settings, setSettings } = useSettings();
-    const [conditionSets, setConditionSets] = useState(1);
-    const [htmlCondSets, setHtmlCondSets] = useState([<ConditionSet uniqueID={1}/>]);
+    const [conditionSets, setConditionSets] = useState([{ uniqueID: 1 }]);
+    const [textCondSets, setTextCondSets] = useState(new Array(conditionSets));
+    const [confirmPopup, setConfirmPopup] = useState(false);
 
     /*
     Activates whenever url changes, determines if url is a valid YouTube url and, 
@@ -44,12 +46,15 @@ function AddSong() {
         const determineVideoId = () => {
             //    1. Determine if url is a valid YouTube url. If not, it should update vidKey to be "invalid url"
             //    2. Determine which of the following types of YouTube url it is, then take steps accordingly.
-            if (url.includes("youtube.com/watch")) {
+            if (url.includes("music.youtube.com")) {
+                setVidKey('YouTube Music url');
+            }
+            else if (url.includes("youtube.com/watch")) {
                 //        a. Normal url. This should take all characters after the string ?v= as the vidKey.
                 const videoIdIndex = url.indexOf("?v=");
                 if (videoIdIndex !== -1) { // (if ?v= doesn't exist, the url is invalid)
                     let vidKey = url.substring(videoIdIndex + 3);
-                //        b. Url with time key. This should take all characters after the string ?v= AND before the string &t= as the vidKey.
+                    //        b. Url with time key. This should take all characters after the string ?v= AND before the string &t= as the vidKey.
                     const timeIndex = vidKey.indexOf("&t=");
                     if (timeIndex !== -1) {
                         vidKey = vidKey.substring(0, timeIndex);
@@ -60,12 +65,12 @@ function AddSong() {
                 } else {
                     setVidKey('invalid url');
                 }
-            //c. Shorts url. This should update vidKey to be "shorts url".
+                //c. Shorts url. This should update vidKey to be "shorts url".
             } else if (url.includes("youtube.com/shorts")) {
-                setVidKey('shorts url');
-            //d. Playlist url. This should update vidKey to be "playlist url".
+                setVidKey('YouTube Shorts url');
+                //d. Playlist url. This should update vidKey to be "playlist url".
             } else if (url.includes("youtube.com/playlist")) {
-                setVidKey('playlist url');
+                setVidKey('YouTube playlist url');
             } else {
                 setVidKey('invalid url');
             }
@@ -78,107 +83,143 @@ function AddSong() {
     const [windowSize, setWindowSize] = useState(getWindowSize());
 
     useEffect(() => {
-      function handleWindowResize() {
-        setWindowSize(getWindowSize());
-      }
-  
-      window.addEventListener('resize', handleWindowResize);
-  
-      return () => {
-        window.removeEventListener('resize', handleWindowResize);
-      };
+        function handleWindowResize() {
+            setWindowSize(getWindowSize());
+        }
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
     }, []);
-        
+
     function getWindowSize() {
-        const {innerWidth, innerHeight} = window;
+        const { innerWidth, innerHeight } = window;
         //console.log("new size");
 
-            //1% of the parent viewport width (same as 1vw):
-            var vw = innerWidth/100;
-            var width = 60*vw;
-            var height = width* 9.0 / 16.0;
-            //console.log(width+", "+height);
+        //1% of the parent viewport width (same as 1vw):
+        var vw = innerWidth / 100;
+        var width = 60 * vw;
+        var height = width * 9.0 / 16.0;
+        //console.log(width+", "+height);
 
-            //assign width and height to the video frame
-            const elm = document.getElementById('preview');
-            if (elm != null) {
-                elm.style.width = width + 'px';
-                elm.style.height = height + 'px';
-                //console.log("finished changing");
-            }
-            else{
-                //console.log("could not find an element with the id 'preview'");
-            }
+        //assign width and height to the video frame
+        const elm = document.getElementById('preview');
+        if (elm != null) {
+            elm.style.width = width + 'px';
+            elm.style.height = height + 'px';
+            //console.log("finished changing");
+        }
+        else {
+            //console.log("could not find an element with the id 'preview'");
+        }
 
-        return {innerWidth, innerHeight};
+        return { innerWidth, innerHeight };
     }
-  
-    //adds another condition set to htmlCondSets and marks the new number of conditionSets 
-    //(technically redundant var, but nice)
+
+    //adds another condition set to conditionSets
     function increaseConditionSets() {
-        var newConditionSets = conditionSets+1;
+        const newConditionSets = [...conditionSets, { uniqueID: conditionSets.length + 1 }];
         setConditionSets(newConditionSets);
-        setHtmlCondSets(prevHtmlCondSets => [
-            ...prevHtmlCondSets,
-            <ConditionSet key={newConditionSets} uniqueID={newConditionSets} />
-        ]);
+        setTextCondSets(new Array(newConditionSets.length));
     }
 
     //removes a condition set with the given uniqueID from the list
     //then adjusts each condition set in the list to have the numbers 1 - htmlCondSets.length
     function removeConditionSet(uniqueID) {
-        setHtmlCondSets(prevHtmlCondSets => {
-            // Filter out the condition set to remove
-            const updatedHtmlCondSets = prevHtmlCondSets.filter(condSet => condSet.props.uniqueID !== uniqueID);
-            setConditionSets(conditionSets-1);
-
-            // Renumber the remaining condition sets
-            return updatedHtmlCondSets.map((condSet, index) => {
-                const updatedUniqueID = index + 1;
-                return React.cloneElement(condSet, { key: updatedUniqueID, uniqueID: updatedUniqueID });
-            });
-        });
+        const updatedConditionSets = conditionSets.filter(set => set.uniqueID !== uniqueID);
+        setConditionSets(updatedConditionSets);
+        setTextCondSets(new Array(updatedConditionSets.length));
     }
-    
-  
+
+
+    function confirmAddition() {
+        if (url.length == 0) {
+            alert("Please enter a url in the bar.");
+        }
+        else if (vidKey.includes(" url")) {
+            alert("Please enter a valid YouTube url in the bar. You have currently entered a(n) " + vidKey + ", which we cannot parse at this time.");
+        }
+        else {
+            setConfirmPopup(true);
+        }
+    }
+
+    //Produces a string that looks something like this in html:
+
+    // your song xxx will be added and will play under these conditions:
+    // {condition set 1} 
+    // OR 
+    // {condition set 2} 
+    // OR 
+    // ... {condition set n}
+    function confirmText() {
+        var toReturn = ["Your song "];
+        toReturn[0] += url;
+        toReturn[0] += " will be added and play under these conditions:";
+        toReturn.push(<br />); toReturn.push(<br />);
+        for (var i = 0; i < conditionSets; i++) {
+            toReturn.push("{condition set " + (i + 1) + "}");
+
+            if (i + 1 < conditionSets) {
+                toReturn.push(<br />);
+                toReturn.push("OR");
+                toReturn.push(<br />);
+            }
+        }
+        return toReturn;
+    }
+
+
     return (
         <div className="page">
             {/* <div className='left-justified'>
                 <p>Add Song</p>
                 <p>Add Playlist</p>
             </div> */}
+            <PopUp
+                title={"Confirm Addition"}
+                hidden={confirmPopup}
+                setHidden={() => setConfirmPopup(false)}
+                content={confirmText()}  //your song xxx will be added and will play under these conditions: {condition set 1} OR {condition set 2} OR ... {condition set n}
+                onSave={"/"}
+                type={"link"}
+            />
+
             <div className='centered'>
                 <div className="youtube-container">
                     <YouTube
                         id={"preview"}
                         videoId={vidKey}
-                        style={{ borderRadius: 10, overflow: 'hidden'}}
+                        style={{ borderRadius: 10, overflow: 'hidden' }}
                     />
                 </div>
 
                 <div className="input-container">
                     <input type="url" className="text-input" placeholder=" "
-                    value={url} onChange={event => setUrl(event.target.value)}></input>
+                        value={url} onChange={event => setUrl(event.target.value)}></input>
                     <span className="text-input-placeholder">Enter YouTube url here...</span>
                 </div>
 
                 <p>This song can play if <span style={{ fontWeight: "bold" }}>any</span> of the following condition sets are true:</p>
-                
-                
+
+
                 {/* <ConditionSet uniqueID={1}/> */}
                 {/* {htmlCondSets} */}
                 <div className="condition-set-table">
-                    {htmlCondSets.map((condSet, index) => (
-                        <div className="condition-set-row" key={index}>
-                            {/* <div className="condition-set-cell">{index + 1}</div> */}
-                            <div className="condition-set-cell">{condSet}</div>
-                            {htmlCondSets.length > 1 && (
+                    {conditionSets.map(condSet => (
+                        <div className="condition-set-row" key={condSet.uniqueID}>
+                            <div className="condition-set-cell">
+                                <ConditionSet uniqueID={condSet.uniqueID} />
+                            </div>
+                            {conditionSets.length > 1 && (
                                 <div className="condition-set-cell tiny-button">
                                     <IconButton
                                         icon={'X'}
                                         text={""}
                                         palette={palette}
-                                        onClick={() => removeConditionSet(index+1)}
+                                        onClick={() => removeConditionSet(condSet.uniqueID)}
                                     />
                                 </div>
                             )}
@@ -187,10 +228,10 @@ function AddSong() {
                 </div>
 
                 <IconButton icon={'plus'}
-                            text={'Add Condition Set'}
-                            palette={palette}
-                            onClick={() => increaseConditionSets()}
-                            />
+                    text={'Add Condition Set'}
+                    palette={palette}
+                    onClick={() => increaseConditionSets()}
+                />
                 <footer className='foot'>
                     <div className='evenly-spaced'>
                         <IconButton
@@ -203,7 +244,7 @@ function AddSong() {
                             icon={'check'}
                             text={'Add Song'}
                             palette={palette}
-                            linkTo={"/"}></IconButton>
+                            onClick={() => confirmAddition()}></IconButton>
                     </div>
                 </footer>
             </div>

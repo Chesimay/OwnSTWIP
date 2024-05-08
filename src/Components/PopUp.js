@@ -1,8 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'; 
 import '../CSS/PopUp.css';
 import Checklist from './Checklist';
+import IconButton from './IconButton';
 
-const PopUp = ({ title, onSave, hidden, setHidden, type }) => {
+//onSave can be a function or a string. If type="link", then it can be a string for where the confirm button should link to
+//if type=/="link", it should be a function
+
+//content should be a string and is only used if type="link"
+const PopUp = ({ title, content, onSave, hidden, setHidden, type }) => {
   const [name, setName] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
@@ -53,6 +58,25 @@ const PopUp = ({ title, onSave, hidden, setHidden, type }) => {
     display = "flex";
   }
 
+  if(type == "link"){
+    return (
+      <div className="popup" style={{display: display}}>
+        <div className="popup-inner" ref={popupRef}>
+          <div className="popup-header">
+            <h2>{title}</h2>
+            <button className="close-button" onClick={onClose}>X</button>
+          </div>
+          <div className="popup-content">
+              <p>{content}</p>            
+          </div>
+          <div className="popup-actions small-button">
+            <IconButton icon="check" linkTo={onSave} text={"Confirm"}></IconButton>
+            <button className="close-without-saving-button" onClick={onClose}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
   if(type == "calendar"){
     return (
       <div className="popup" style={{display: display}}>

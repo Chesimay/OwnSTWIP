@@ -83,14 +83,21 @@ function AddSong() {
     const [windowSize, setWindowSize] = useState(getWindowSize());
 
     useEffect(() => {
+        // Perform actions when the component has loaded
+        setWindowSize(getWindowSize());
+    }, []);
+
+    useEffect(() => {
         function handleWindowResize() {
             setWindowSize(getWindowSize());
         }
 
         window.addEventListener('resize', handleWindowResize);
+        window.addEventListener('load', handleWindowResize);
 
         return () => {
             window.removeEventListener('resize', handleWindowResize);
+            window.removeEventListener('load', handleWindowResize);
         };
     }, []);
 
@@ -98,10 +105,16 @@ function AddSong() {
         const { innerWidth, innerHeight } = window;
         //console.log("new size");
 
-        //1% of the parent viewport width (same as 1vw):
-        var vw = innerWidth / 100;
+        var vw = innerWidth / 100;        //1% of the parent viewport width (same as 1vw):
+        //store width of 60vw and proportional height
         var width = 60 * vw;
         var height = width * 9.0 / 16.0;
+        //if the height is more than a third of the viewheight, adjust the width and height proportionally
+        // until height is short enough
+        while(height > innerHeight/3.0){
+            width -= vw;
+            height -= vw * 9.0 / 16.0;
+        }
         //console.log(width+", "+height);
 
         //assign width and height to the video frame
@@ -112,7 +125,7 @@ function AddSong() {
             //console.log("finished changing");
         }
         else {
-            //console.log("could not find an element with the id 'preview'");
+            console.log("could not find an element with the id 'preview'");
         }
 
         return { innerWidth, innerHeight };

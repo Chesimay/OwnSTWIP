@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Menu from "./Pages/Menu";
 import Home from "./Pages/HomePage";
 import Settings from "./Pages/Settings";
@@ -11,7 +11,7 @@ import SettingsProvider from './Non-Component_JS_Files/SettingsContext';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <SettingsProvider>
         <Routes>
           <Route path="/" element={<Menu />}>
@@ -22,6 +22,6 @@ export default function App() {
           </Route>
         </Routes>
       </SettingsProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
